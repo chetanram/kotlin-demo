@@ -15,7 +15,6 @@ import android.view.View
 import android.widget.Toast
 import com.android.volley.VolleyError
 import com.google.gson.Gson
-import java.io.File
 import java.util.HashMap
 import kotlin.collections.ArrayList
 
@@ -58,7 +57,25 @@ class MainActivity : AppCompatActivity(), ApiResponseListener {
         for (list in lists) {
             Log.i("list of ", list)
         }
+        for (i in 0 until lists.size) {
+            Log.d("i is", "" + i)
+            for (i in lists.size - 1 downTo 0 step 1) {
 
+                Log.d("i is", "" + i)
+            }
+        }
+        var x:String = getDigits(11)
+        Log.d("x",x)
+
+
+    }
+
+    fun getDigits(i: Int): String {
+        if (i < 9) {
+            return "0"+i
+        } else {
+            return ""+i
+        }
 
     }
 
