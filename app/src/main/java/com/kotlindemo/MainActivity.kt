@@ -12,6 +12,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.VolleyError
 import com.google.gson.Gson
@@ -24,23 +26,28 @@ class MainActivity : AppCompatActivity(), ApiResponseListener {
     private var context: Context? = null
     private var apiController: ApiController? = null
     private var params: HashMap<String, String>? = null
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
+    private lateinit var buttonLogin: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        editTextEmail = findViewById(R.id.editTextEmail)
+        editTextPassword = findViewById(R.id.editTextEmail)
+        buttonLogin = findViewById(R.id.buttonLogin)
         context = this
         params = HashMap()
-        params!!.put("data", "data")
+        params!!.put("language", "en")
         apiController = ApiController(context!!)
-        apiController!!.actionCallWebService("http://54.235.114.63:8080/belice/events", params!!)
+        apiController!!.actionCallWebService("http://192.168.1.1:9000/api/vendor/services", params!!)
 
 
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         val params = hashMapOf<String, String>()
         params.put("Chetan", "ram")
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        val fab = findViewById<FloatingActionButton>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", View.OnClickListener { Toast.makeText(this, "click", Toast.LENGTH_LONG).show() }).show()
@@ -64,17 +71,17 @@ class MainActivity : AppCompatActivity(), ApiResponseListener {
                 Log.d("i is", "" + i)
             }
         }
-        var x:String = getDigits(11)
-        Log.d("x",x)
+        var x: String = getDigits(11)
+        Log.d("x", x)
 
 
     }
 
     fun getDigits(i: Int): String {
         if (i < 9) {
-            return "0"+i
+            return "0" + i
         } else {
-            return ""+i
+            return "" + i
         }
 
     }
